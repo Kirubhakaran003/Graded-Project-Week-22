@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <div class="forms">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter Username..." required>
+        </div>
+        <div class="forms">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter Password..." required>
+        </div>
+        <div class="forms">
+            <button onclick="login()">Login</button>
+        </div>
+        <p id="loginError" class="error"></p>
+    </div>
+</body>
+
+</html>
+<script>
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    const loginError = document.getElementById('loginError');
+
+    function login() {
+        const username = usernameInput.value;
+        const password = passwordInput.value;
+
+        if (username.trim() == '' || password.trim() == '') {
+            loginError.textContent = 'Enter both username and password';
+            return;
+        }
+
+        if (username == 'admin' && password == 'admin1234') {
+
+            localStorage.setItem('username', username);
+
+            window.location.href = 'resume.html';
+        } else {
+            loginError.textContent = 'Invalid username Or password.';
+        }
+    }
+    function userNameCheck() {
+        if (localStorage.getItem('username') != null) {
+            window.location.href = 'resume.html';
+        }
+    }
+    userNameCheck();
+
+</script>
